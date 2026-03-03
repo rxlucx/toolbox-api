@@ -1,0 +1,25 @@
+services:
+  toolbox:
+    image: ghcr.io/rxlucx/toolbox-api:latest
+    container_name: toolbox-api
+    restart: unless-stopped
+    environment:
+      TRADING_ENABLED: "false"
+      MAX_USDT_PER_TRADE: "25"
+      DAILY_LOSS_CAP_USDT: "50"
+      SYMBOL_ALLOWLIST: "BTCUSDT,ETHUSDT"
+      # secrets set in Hostinger env UI if possible, or here (not recommended)
+      BINANCE_API_KEY: ""
+      BINANCE_API_SECRET: ""
+      NOTION_TOKEN: ""
+      NOTION_DATABASE_ID: ""
+      X_BEARER_TOKEN: ""
+      PINTEREST_TOKEN: ""
+      GUMROAD_TOKEN: ""
+    volumes:
+      - toolbox_data:/data
+    ports:
+      - "8080:8080"
+
+volumes:
+  toolbox_data:
